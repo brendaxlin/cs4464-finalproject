@@ -1,48 +1,17 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 960px;
-  height: 500px;
-  position: relative;
-}
-#canvas {
-}
-#canvas-svg {
-}
-.land {
-  fill: #222;
-}
-.boundary {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 1px;
-}
-#tooltip-container {
-  position: absolute;
-  background-color: #fff;
-  color: #000;
-  padding: 10px;
-  border: 1px solid;
-  display: none;
-}
-.tooltip_key {
-  font-weight: bold;
-}
-.tooltip_value {
-  margin-left: 20px;
-  float: right;
-}
-</style>
+<html>
+<head>
+  <title>BRENDA LIN | CS 4464 Final Project - Refugees Around the World</title>
+      
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles/map.css">
+  <link rel="stylesheet" href="styles/newspaper.css">
 
-<div id="tooltip-container"></div>
-
-<div id="canvas-svg"></div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
 
 <script>
 d3.csv("population.csv", function(err, data) {
@@ -59,7 +28,7 @@ d3.csv("population.csv", function(err, data) {
           final = s + (((e - s) / steps) * count);
       return Math.floor(final);
   }
-  
+
   function Color(_r, _g, _b) {
       var r, g, b;
       var setColors = function(_r, _g, _b) {
@@ -78,7 +47,7 @@ d3.csv("population.csv", function(err, data) {
           return colors;
       };
   }
-  
+
   function hexToRgb(hex) {
       var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
       return result ? {
@@ -87,7 +56,7 @@ d3.csv("population.csv", function(err, data) {
           b: parseInt(result[3], 16)
       } : null;
   }
-  
+
   function valueFormat(d) {
     if (d > 1000000000) {
       return Math.round(d / 1000000000 * 10) / 10 + "B";
@@ -120,7 +89,7 @@ d3.csv("population.csv", function(err, data) {
     var b = Interpolate(startColors.b, endColors.b, COLOR_COUNTS, i);
     colors.push(new Color(r, g, b));
   }
-  
+
   var MAP_KEY = config.data0;
   var MAP_VALUE = config.data1;
   
@@ -128,12 +97,12 @@ d3.csv("population.csv", function(err, data) {
       .scale((width + 1) / 2 / Math.PI)
       .translate([width / 2, height / 2])
       .precision(.1);
-  
+
   var path = d3.geo.path()
       .projection(projection);
-  
+
   var graticule = d3.geo.graticule();
-  
+
   var svg = d3.select("#canvas-svg").append("svg")
       .attr("width", width)
       .attr("height", height);
@@ -148,7 +117,7 @@ d3.csv("population.csv", function(err, data) {
   function log10(val) {
     return Math.log(val);
   }
-  
+
   data.forEach(function(d) {
     valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
   });
@@ -164,7 +133,7 @@ d3.csv("population.csv", function(err, data) {
   
   d3.json("https://s3-us-west-2.amazonaws.com/vida-public/geo/world-topo-min.json", function(error, world) {
     var countries = topojson.feature(world, world.objects.countries).features;
-  
+
     svg.append("path")
        .datum(graticule)
        .attr("class", "choropleth")
@@ -176,7 +145,7 @@ d3.csv("population.csv", function(err, data) {
      .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
      .attr("class", "equator")
      .attr("d", path);
-  
+
     var country = g.selectAll(".country").data(countries);
   
     country.enter().insert("path")
@@ -196,7 +165,7 @@ d3.csv("population.csv", function(err, data) {
         })
         .on("mousemove", function(d) {
             var html = "";
-  
+
             html += "<div class=\"tooltip_kv\">";
             html += "<span class=\"tooltip_key\">";
             html += d.properties.name;
@@ -206,15 +175,15 @@ d3.csv("population.csv", function(err, data) {
             html += "";
             html += "</span>";
             html += "</div>";
-            
+
             $("#tooltip-container").html(html);
             $(this).attr("fill-opacity", "0.8");
             $("#tooltip-container").show();
-            
+
             var coordinates = d3.mouse(this);
-            
+
             var map_width = $('.choropleth')[0].getBoundingClientRect().width;
-            
+
             if (d3.event.pageX < map_width / 2) {
               d3.select("#tooltip-container")
                 .style("top", (d3.event.layerY + 15) + "px")
@@ -230,13 +199,53 @@ d3.csv("population.csv", function(err, data) {
                 $(this).attr("fill-opacity", "1.0");
                 $("#tooltip-container").hide();
             });
-    
+
     g.append("path")
         .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
         .attr("class", "boundary")
         .attr("d", path);
   });
-  
+
   d3.select(self.frameElement).style("height", height + "px");
 });
 </script>
+<body>
+      <div class="head">
+          <div class="headerobjectswrapper">
+              <header>Refugees Around the World</header>
+          </div>
+          <div class="subhead">CS 4464 — Final Project</div>
+          <div class="map-bumper"></div>
+          <div id="tooltip-container"></div>
+          <div id="canvas-svg"></div>
+          </div>
+          <div class="map-bumper"></div>
+          <div class="content">
+            <div class="collumns">
+              <div class="collumn">
+                <div class="head">
+                  <span class="headline hl3">A look where refugees move across the world.</span>
+                  <p><span class="headline hl4">by BRENDA LIN</span></p>
+                  
+                  <div class = "body-text">
+                  <span class="headline hl1">Overview</span>
+                  <p>
+                  </p>
+                  <span class="headline hl1">Explanation of Variance and Error</span>
+                  <p>
+                  </p>
+                  <span class="headline hl1">Moving Foward</span>
+                  <p>
+                  </p>
+                  <span class="headline hl1">Links and Citations</span>
+                  <div><a href="http://www.atlantapd.org/crimedatadownloads.aspx">Atlanta PD Crime Data</a></div>
+                  <div><a href="http://gosa.georgia.gov/2013-14-downloadable-data-files">School Rating and Demographic Data</a></div>
+                  <div><a href="http://www.gadoe.org/CCRPI/Pages/default.aspx">Atlanta CCPRI Data</a></div>
+                  </div>
+                </div>
+                <div class="figcaption">This work was done as part of a class assignment for Georgia Tech's CS4464/6465 Fall 2016. The opinions expressed here, if any, are solely those of the students working on this assignment and not of the Instructor or Georgia Tech.</div>
+              </div>
+            </div>
+          </div>
+    </body>
+</html>
