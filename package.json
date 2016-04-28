@@ -1,0 +1,23 @@
+{
+  "name": "cs4464-finalproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brendaxlin/cs4464-finalproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brendaxlin/cs4464-finalproject/issues"
+  },
+  "homepage": "https://github.com/brendaxlin/cs4464-finalproject#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
