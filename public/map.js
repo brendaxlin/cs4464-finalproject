@@ -1,10 +1,10 @@
-d3.csv("population.csv", function(err, data) {
-  var config = {"data0":"Country (or dependent territory)","data1":"Population","label0":"label 0","label1":"label 1","color0":"#c2ae99","color1":"#997b5c","width":800,"height":400}
+d3.csv("refugeedata_converted.csv", function(err, data) {
+  var config = {"data0":"Country (or dependent territory)","data1":"Number of Refugees","data2":"Population","data3":"Countries of Origin","label0":"label 0","label1":"label 1","color0":"#c2ae99","color1":"#997b5c","width":800,"height":400}
 
   var width = 960,
       height = 960;
  
-  var COLOR_COUNTS = 9;
+  var COLOR_COUNTS = 4;
 
   function Interpolate(start, end, steps, count) {
       var s = start,
@@ -76,6 +76,8 @@ d3.csv("population.csv", function(err, data) {
 
   var MAP_KEY = config.data0;
   var MAP_VALUE = config.data1;
+  var POPULATE = config.data2;
+  var ORIGIN_DATA = config.data3;
   
   var projection = d3.geo.mercator()
       .scale((width + 1) / 2 / Math.PI)
@@ -97,6 +99,8 @@ d3.csv("population.csv", function(err, data) {
       .attr("d", path);
 
   var valueHash = {};
+  var popHash = {};
+  var originHash = {};
 
   function log10(val) {
     return Math.log(val);
@@ -104,8 +108,11 @@ d3.csv("population.csv", function(err, data) {
 
   data.forEach(function(d) {
     valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
+    popHash[d[MAP_KEY]] = +d[POPULATE];
+    originHash[d[MAP_KEY]] = +d[ORIGIN_DATA];
   });
 
+  console.log(originHash);
   var quantize = d3.scale.quantize()
       .domain([0, 1.0])
       .range(d3.range(COLOR_COUNTS).map(function(i) { return i }));
@@ -115,7 +122,7 @@ d3.csv("population.csv", function(err, data) {
     d3.max(data, function(d){
       return (+d[MAP_VALUE]) })]);
   
-  d3.json("https://s3-us-west-2.amazonaws.com/vida-public/geo/world-topo-min.json", function(error, world) {
+  d3.json("world-topo.json", function(error, world) {
     var countries = topojson.feature(world, world.objects.countries).features;
 
     svg.append("path")
@@ -144,20 +151,29 @@ d3.csv("population.csv", function(err, data) {
             return "rgb(" + color.r + "," + color.g +
                 "," + color.b + ")";
           } else {
-            return "#ccc";
+            return "#d0d0d0";
           }
         })
         .on("mousemove", function(d) {
             var html = "";
 
             html += "<div class=\"tooltip_kv\">";
-            html += "<span class=\"tooltip_key\">";
+            html += "<div>";
+            html += "<div style = 'text-align:left;'>";
+            html += "<span class=\"tooltip_key\" style = 'font-size: 18px; text-align:left;'>";
             html += d.properties.name;
             html += "</span>";
-            html += "<span class=\"tooltip_value\">";
-            html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : "");
+            html += "<span class=\"tooltip_value\" style = 'font-size: 18px;'>";
+            html += (valueHash[d.properties.name] ? valueFormat(popHash[d.properties.name]) : "");
             html += "";
             html += "</span>";
+            html += "</div>";
+            html += "<div style = 'text-align:left;'>";
+            html += "<span style = 'font-weight: bold;'>Total Number of Refugees: </span>"
+            html += (valueHash[d.properties.name] ? valueFormat(valueHash[d.properties.name]) : "");
+            html += "";
+            html += "</div>";
+            html += "</div>";
             html += "</div>";
 
             $("#tooltip-container").html(html);
