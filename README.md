@@ -1,4 +1,4 @@
-# cs4464-finalproject
+# REFUGEES AND SOCIAL MEDIA
 
 A project to show show how technology is allowing a personal narrative to refugee numbers.
 
