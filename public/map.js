@@ -526,6 +526,35 @@ d3.csv("refugeedata_converted.csv", function(err, data) {
        }
       });
 
+    var aus = svg.append("circle")
+                          .attr("cx", 870)
+                          .attr("cy", 550)
+                          .attr("r", 4)
+                          .attr("class", "circle");
+
+    var aus_open = false;
+
+    aus.on("click", function() {
+      var html = "";
+      html += "<div class=\"tooltip_kv\">";
+      html += "<a href='https://twitter.com/myrefugeestory/status/643415716620804096'><img src='/photos/aus.png'></a>";
+      html += "Naseer from Iraq discusses his success since arriving in Oz."
+      html += "</span>";
+      html += "</div>";
+
+      if (aus_open == false) {
+          $("#tooltip-container").html(html);
+          $(this).attr("fill-opacity", "0.8");
+          $("#tooltip-container").show();
+          aus_open = true;
+       } else {
+          $(this).attr("fill-opacity", "1.0");
+          $("#tooltip-container").hide();
+          aus_open = false;
+       }
+      });
+
+
     g.append("path")
      .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
      .attr("class", "equator")
