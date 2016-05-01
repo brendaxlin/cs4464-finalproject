@@ -17,3 +17,5 @@ Then run:
 npm run dev
 
 The site will be served on port 8000.
+
+![alt tag](https://github.com/brendaxlin/cs4464-finalproject/blob/master/Architecture%20Diagram.png)
