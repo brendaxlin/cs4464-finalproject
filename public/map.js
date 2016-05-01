@@ -41,6 +41,8 @@ d3.csv("refugeedata_converted.csv", function(err, data) {
       } : null;
   }
 
+  /*Changes the values to be truncated with a B, M, or K at the end to represent values*/
+
   function valueFormat(d) {
     if (d > 1000000000) {
       return Math.round(d / 1000000000 * 10) / 10 + "B";
@@ -53,6 +55,7 @@ d3.csv("refugeedata_converted.csv", function(err, data) {
     }
   }
 
+  /*Changing colors of the map to correlating values*/
   var COLOR_FIRST = config.color0, COLOR_LAST = config.color1;
   
   var rgb = hexToRgb(COLOR_FIRST);
@@ -108,6 +111,7 @@ d3.csv("refugeedata_converted.csv", function(err, data) {
     return Math.log(val);
   }
 
+  /*Iterating throught the data passed in from config*/
   data.forEach(function(d) {
     valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
     popHash[d[MAP_KEY]] = +d[POPULATE];
@@ -134,7 +138,8 @@ d3.csv("refugeedata_converted.csv", function(err, data) {
        .attr("d", path);
 
     var g = svg.append("g");
- 
+  
+    /* Marker location code as well as code for the overlay by country/location */
     var dadaab = svg.append("circle")
                           .attr("cx", 585)
                           .attr("cy", 480)
@@ -554,6 +559,7 @@ d3.csv("refugeedata_converted.csv", function(err, data) {
        }
       });
 
+    /*Code for the overall map and general overlay box*/
 
     g.append("path")
      .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
