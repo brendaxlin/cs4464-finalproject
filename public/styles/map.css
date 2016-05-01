@@ -23,6 +23,7 @@ body {
   padding: 10px;
   border: 1px solid;
   display: none;
+  width: 400px;
 }
 .tooltip_key {
   font-weight: bold;
@@ -30,4 +31,18 @@ body {
 .tooltip_value {
   margin-left: 20px;
   float: right;
+}
+
+.circle:hover {
+  fill:red;
+  cursor: pointer;
+}
+
+.circle1:hover {
+  fill:green;
+  cursor: pointer;
+}
+
+img {
+  width: 400px;
 }

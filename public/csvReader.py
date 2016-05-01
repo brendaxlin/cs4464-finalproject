@@ -1,12 +1,10 @@
 import csv
 import pprint
 
-print("hello!!!!")
-
 def csvReader():
-    oriDoc = open("test.csv", 'rt')
+    oriDoc = open("refugeedata.csv", 'rt')
     print("open doc")
-    newDoc = open("newData.csv", 'w')
+    newDoc = open("refugee_converted.csv", 'w')
     reader = csv.reader(oriDoc)
     writer = csv.writer(newDoc)
     oldCountry = ""

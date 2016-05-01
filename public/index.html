@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>BRENDA LIN | CS 4464 Final Project - Refugees Around the World</title>
-      
+  <link rel="icon" href="brown.ico">    
   <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles/map.css">
   <link rel="stylesheet" href="styles/newspaper.css">
@@ -16,35 +16,59 @@
 <body>
       <div class="head">
           <div class="headerobjectswrapper">
-              <header>Refugees Around the World</header>
+              <header>Refugees and Social Media</header>
           </div>
           <div class="subhead">CS 4464 — Final Project</div>
       </div>
-                <div class="map-bumper"></div>
-          <div id="tooltip-container"></div>
-          <div id="canvas-svg"></div>
-          <div class="map-bumper"></div>
+      <div class="map-bumper"></div>
+      <div id="tooltip-container"></div>
+      <div id="canvas-svg"></div>
+      <div class="map-bumper"></div>
           <div class="content">
             <div class="collumns">
               <div class="collumn">
                 <div class="head">
-                  <span class="headline hl3">A look where refugees move across the world.</span>
+                  <span class="headline hl3">How technology is giving a face to numbers.</span>
                   <p><span class="headline hl4">by BRENDA LIN</span></p>
 
                   <div class = "body-text">
                   <span class="headline hl1">Overview</span>
-                  <p>
+                  <p> In light of all the warning in the Middle East, there has been an influx of refugees, catching the attention of the world. While many welcome these refugees, there are groups who fear them or what they represent — often only based on the area they are escaping. However, with social media, more individual stories are being shown.
                   </p>
+                  <span class="citation">"59.5 M people are forcibly displaced worldwide."</span>
+                  <p>Refugees are defined by the UNHCR as <a href='http://www.unhcr.org/55df0e556.html'>persons fleeing armed conflict or persecution.</a> According the the UNHCR, there are currently 59.5 million people displaced worldwide, a number that includes both refugees and Internally Displaced Persons (IDPs), or <a href='http://www.unhcr.org.uk/about-us/key-facts-and-figures.html'>people who were forcibly uprooted people and displaced within their own country.</a> At the end of 2014, there were 19.5 million refugees —  up 2.9 million from the end of 2013.
+                  </p>
+                  <p>A lot has changed in the past three years. Due to the Syrian War, the Syrian Arab Republic has overtaken Afghanistan as the world's number one source of refugees, a title the latter country has held for the last three decades. Due to their proximity to these two countries, developing countries host over 86% of the world’s refugees, compared to 70% ten years ago.
+                  </p>
+                  <span class="citation">"Refugees keep their old phones, holding photos of family no longer with them, close as it often is their own link to their old worlds."</span>
+                  <p>
+                  Unlike previous groups of refugees, many of the Syrian refugees are more middle class. They previously enjoyed luxuries and privileges that other groups may have not experienced, such as possessing a college education and smartphones. Smartphones, for many, have become the greatest commodity for refugees. Smartphone maps, global positioning apps, social media, and WhatsApp have become essential tools for the modern migrant. In <i>The New York Times's</i> piece <a href='http://www.huffingtonpost.co.uk/2015/09/08/syrian-refugees-reveal-contents-bags-flee-with_n_8102292.html'>"A 21st-Century Migrant’s Essentials: Food, Shelter, Smartphone,"</a>  Osama Aljasem, a 32-year-old music teacher from Deir al-Zour, Syria, is quoted saying that “[he] would never have been able to arrive at my destination without my smartphone,” and that he “[gets] stressed out when the battery even starts to get low.” 
+                  <p></p>Refugees use smartphones to reorient themselves when they arrive in a new country or keep in contact with separated relatives to let them know that they are safe through platforms such as WhatsApp, Twitter, Facebook, etc. Some refugees keep their old phones, holding photos of family no longer with them, close as it often is <a href='https://www.youtube.com/watch?v=CDaPg3q7br4'>their own link to their old worlds</a>, while other abandon their social media, afraid that those watching will track them down to their new locations. Those unafraid or have been refugees for longer, often use the platforms to share their story or advocate for fellow refugees. The images of the refugees traveling or sharing the individual stories of the refugees are able to give narrative to the numbers that are constantly being shared by giving backstory or even individualizing the umbrella term refugees. Images, videos, and stories that not only have given context to those traveling, but stories that have differentiated refugees from the people they are escaping from as many are outed as former engineers or professors who were being threatened.
+                  </p>
+                  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Nothing says refugee like a selfie <a href="http://t.co/ytEVjfGtt7">pic.twitter.com/ytEVjfGtt7</a></p>&mdash; mollysmom (@mollymom111) <a href="https://twitter.com/mollymom111/status/652449300493004804">October 9, 2015</a></blockquote>
+                  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <p>While sharing the stories on social media and the use of social media showcased in news sources, many are skeptical about those currently moving into more developed parts of the world, often citing use of social media and possessing an expensive smartphone as reasons of the skepticism. Yet, <a href='http://www.huffingtonpost.co.uk/2015/09/08/syrian-refugees-reveal-contents-bags-flee-with_n_8102292.html'>it is often one of the few possessions they own,<a> usually carried over from their previous lives and the only way that they can let their far away family and friends know that they are safe, especially since they need to switch numbers and sim cards whenever they reach a new country.</p> 
+                  For many of the refugees, their only or greatest desire is to return to origin countries to rebuild it alongside their displaced family and friends.
+                  <span class="headline hl1">How to Use Map</span>
+                  <p>Hover over each of the countries to read the name of the country, population, origin countries of the refugees residing there, and the percentage of refugees compared to the population of the country. Users can also click on the dots to open a twitter image from that location. Clicking on the image will take users to the original tweet.
+                  </p>
+
+                  <span class="headline hl1">Implementation</span>
+                  <p>I searched a variety of Twitter hashtags spanning from #refugee and #syrianrefugee to #selfie, mostly in combination with each other. The latter few words were obvious, but I elected to search for the world selfie as newspapers around the world have mentioned consistently mentioned that refugees have been taking photos are each of their stops to send to their relatives. Many of these tweets lead to other social media sites such as Facebook, Instagram and even Tumblr. I then selected one  photo from each town often going back and replacing photos when I found another one that better fit the people of the area. I decided that having multiple of photos, however prevalent, in an area would not be feasible for the project do to the static size of the map and not wanting to compromise the readability of the images.
+                  </p><p>
+                  I altered the existing base D3 map by passing in data from refugee and displaced persons data from the UNHCR. Due to the formatting of the existing data, I wrote a few python scripts that converted the data to add up all the refugees into their destination countries rather than separated by their countries of origin. I then went back to create two new columns of data I wanted for percentage of refugees to the country and to the world. That data was passed on along side origin data to show up on the hover with population data.</p><p>
+                  To place Twitter images on the D3 map, I created small svg circles and manually placed them on the map after equations to convert them from coordinates failed to do so correctly. I then made each svg circle clickable by creating a boolean variable and using similar code to the country hovers. Due to fear of tweet or access to social media accounts being blocked, I opted to screenshot the tweets and passing them in as photos rather than embedding the tweets.
+                  </p>
+
                   <span class="headline hl1">Explanation of Variance and Error</span>
-                  <p>
-                  </p>
-                  <span class="headline hl1">Moving Foward</span>
-                  <p>
+                  <p> The all the data shown in ths documentation here are from either 2013 or 2014 due to availability of datasets. There has been an changes, mostly increases, in population and number of refugees since then — reaching <a href='http://www.unhcr.org/559bdb0e6.html'>2.25 million in South Sudan and around its borders</a> up from the 226k shown on the map.
+                  </p><p>
+                  Due to language barriers, many of the the internet documentation listed here are mostly from English speakers, most of them posting photos with refugees rathern than being refugees themselves. There are many other refugees known to be documenting their experience first-hand but are not easily found. Translating the word refugees in a variety of languages did not yield many results. Additionally, for many refugees who arrived in countries before Twitter, they many not be posting or identifying themselves as refugees on social media anymore. Most of the social media is currently focused on the still moving Syrian refugees.
                   </p>
                   <span class="headline hl1">Links and Citations</span>
-                  <div><a href="http://www.atlantapd.org/crimedatadownloads.aspx">Atlanta PD Crime Data</a></div>
-                  <div><a href="http://gosa.georgia.gov/2013-14-downloadable-data-files">School Rating and Demographic Data</a></div>
-                  <div><a href="http://www.gadoe.org/CCRPI/Pages/default.aspx">Atlanta CCPRI Data</a></div>
+                  <div><a href="http://data.un.org/Data.aspx?d=UNHCR&f=indID%3AType-Ref">UN Refugee Statistical Data from 2013</a></div>
+                  <div><a href="https://vida.io/gists/xcRFWQ8ffLZWCWj4r">D3 World Map and Population Data</a></div>
+                  <div><a href="http://www.unhcr.org.uk/about-us/key-facts-and-figures.html">UNHCR Facts and Figures About Refugees</a></div>
                   </div>
                 </div>
                 <div class="figcaption">This work was done as part of a class assignment for Georgia Tech's CS4464/6465 Fall 2016. The opinions expressed here, if any, are solely those of the students working on this assignment and not of the Instructor or Georgia Tech.</div>

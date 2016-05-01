@@ -63,6 +63,7 @@ p{
     font-size: 18px;
     line-height: 1.6;
     width: 100%;
+    min-width: 70%
     display: inline-block;
     padding: 0 1% 0 1%;
     vertical-align: top;
@@ -121,13 +122,14 @@ p{
 
 .collumn .citation{
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
+    font-size: 24px;
     line-height: 44px;
-    /*font-style: italic;*/
+    font-style: italic;
     text-align: center;
-    font-weight: 400;
+    font-weight: 600;
     display: block;
     margin: 40px 0 40px 0;
+    color:#654321;
     font-feature-settings: "liga", "dlig";
 
 }
@@ -209,4 +211,17 @@ p{
     padding: 0;
     height: 600px;
     width: 100%;
+ }
+
+ iframe {
+    position: relative;
+    visibility: visible;
+    display: block;
+    width: 400px;
+    height: 448.5px;
+    padding: 0px;
+    border: none;
+    max-width: 100%;
+    min-width: 220px;
+    margin: 10px auto;
  }
